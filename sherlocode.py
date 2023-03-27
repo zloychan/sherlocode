@@ -93,8 +93,11 @@ def search_in_file(search, file):
     with open(file) as json_file:
         data = json.load(json_file)
         data = json.loads(data)
-        if search.lower() in data["body"].lower():
-            print_log(data, search)
+        try:
+            if search.lower() in data["body"].lower():
+                print_log(data, search)
+        except AttributeError:
+            pass
 
 
 def search_in_reports(search):
